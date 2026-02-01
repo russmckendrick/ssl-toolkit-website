@@ -1,0 +1,21 @@
+{
+  "name": "ssl-toolkit",
+  "short_name": "ssl-toolkit",
+  "description": "SSL/TLS Certificate Diagnostic Tool - Comprehensive SSL certificate analysis, grading, and diagnostics from the command line.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1b26",
+  "theme_color": "#24283b",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
