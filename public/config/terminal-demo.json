@@ -52,28 +52,28 @@
           { "text": "✓ ", "cls": "check" },
           { "text": "DNS Resolution Complete", "cls": "text" }
         ], "pause": 200 },
-        { "text": "  ┌────────────┬────────┬────────────────────────────┬──────┐", "cls": "dim", "pause": 50 },
-        { "text": "  │ Provider   │ Status │ IP Addresses                │ Time │", "cls": "dim", "pause": 50 },
-        { "text": "  ├────────────┼────────┼────────────────────────────┼──────┤", "cls": "dim", "pause": 50 },
+        { "text": "  ┌────────────┬────────┬──────────────────────────────┬──────┐", "cls": "dim", "pause": 50 },
+        { "text": "  │ Provider   │ Status │ IP Addresses                 │ Time │", "cls": "dim", "pause": 50 },
+        { "text": "  ├────────────┼────────┼──────────────────────────────┼──────┤", "cls": "dim", "pause": 50 },
         { "parts": [
           { "text": "  │ System     │ ", "cls": "dim" },
-          { "text": "✓ OK", "cls": "green" },
-          { "text": "   │ 104.21.67.197, 172.67.180.37 │ 22ms │", "cls": "dim" }
+          { "text": "OK", "cls": "green" },
+          { "text": "     │ 104.21.67.197, 172.67.180.37 │ 22ms │", "cls": "dim" }
         ], "pause": 100 },
         { "parts": [
           { "text": "  │ Google     │ ", "cls": "dim" },
-          { "text": "✓ OK", "cls": "green" },
-          { "text": "   │ 172.67.180.37, 104.21.67.197 │ 21ms │", "cls": "dim" }
+          { "text": "OK", "cls": "green" },
+          { "text": "     │ 172.67.180.37, 104.21.67.197 │ 21ms │", "cls": "dim" }
         ], "pause": 100 },
         { "parts": [
           { "text": "  │ Cloudflare │ ", "cls": "dim" },
-          { "text": "✓ OK", "cls": "green" },
-          { "text": "   │ 104.21.67.197, 172.67.180.37 │ 18ms │", "cls": "dim" }
+          { "text": "OK", "cls": "green" },
+          { "text": "     │ 104.21.67.197, 172.67.180.37 │ 18ms │", "cls": "dim" }
         ], "pause": 100 },
         { "parts": [
           { "text": "  │ OpenDNS    │ ", "cls": "dim" },
-          { "text": "✓ OK", "cls": "green" },
-          { "text": "   │ 172.67.180.37, 104.21.67.197 │ 24ms │", "cls": "dim" }
+          { "text": "OK", "cls": "green" },
+          { "text": "     │ 172.67.180.37, 104.21.67.197 │ 24ms │", "cls": "dim" }
         ], "pause": 100 },
         { "text": "  └────────────┴────────┴──────────────────────────────┴──────┘", "cls": "dim", "pause": 200 },
         { "text": "", "pause": 200 },
