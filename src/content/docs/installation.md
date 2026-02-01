@@ -23,27 +23,30 @@ To upgrade to the latest version:
 brew upgrade ssl-toolkit
 ```
 
-## GitHub Releases (Linux / macOS / Windows)
+## GitHub Releases (Linux / Windows)
 
 Pre-built binaries are available for all major platforms from the [GitHub Releases](https://github.com/russmckendrick/ssl-toolkit/releases) page.
 
-### Linux / macOS
+### Linux
 
 Download and install using curl:
 
 ```bash
-# Download the latest release for your platform
-curl -sL https://github.com/russmckendrick/ssl-toolkit/releases/latest/download/ssl-toolkit-$(uname -s)-$(uname -m).tar.gz | tar xz
-
-# Move to a directory in your PATH
+ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+curl -sL "https://github.com/russmckendrick/ssl-toolkit/releases/latest/download/ssl-toolkit-linux-${ARCH}" -o ssl-toolkit
+chmod +x ssl-toolkit
 sudo mv ssl-toolkit /usr/local/bin/
 ```
 
 ### Windows
 
-1. Download the latest `.zip` file from the [releases page](https://github.com/russmckendrick/ssl-toolkit/releases)
-2. Extract the executable
-3. Add the directory to your system PATH, or move `ssl-toolkit.exe` to a directory already in your PATH
+Download using Powershell
+
+```pwshell
+Invoke-WebRequest -Uri "https://github.com/russmckendrick/ssl-toolkit/releases/latest/download/ssl-toolkit-windows-amd64.exe" -OutFile "ssl-toolkit.exe"
+```
+
+You can then move ssl-toolkit.exe to a directory in your PATH, or run it directly from the download location.
 
 ## From Source (Rust)
 
