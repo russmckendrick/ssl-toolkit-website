@@ -45,36 +45,36 @@ const features = [
 ];
 ---
 
-<section id="slide-features" class="slide min-h-screen flex items-center justify-center relative overflow-hidden py-16">
+<section id="slide-features" class="slide flex items-center justify-center relative overflow-hidden py-12 md:py-16">
   <!-- Background effects -->
   <div class="absolute inset-0 grid-bg opacity-15"></div>
   <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-tokyo-blue/6 blur-[150px]"></div>
   <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-tokyo-purple/5 blur-[120px]"></div>
 
   <div class="relative w-full max-w-6xl mx-auto px-4">
-    <div class="text-center mb-12 lg:mb-16">
-      <p class="font-mono text-xs text-tokyo-blue uppercase tracking-[0.25em] mb-4 slide-fade-up">Features</p>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-tokyo-text slide-fade-up slide-delay-1">
+    <div class="text-center mb-8 md:mb-12 lg:mb-16">
+      <p class="font-mono text-xs text-tokyo-blue uppercase tracking-[0.25em] mb-3 md:mb-4 slide-fade-up">Features</p>
+      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-tokyo-text slide-fade-up slide-delay-1">
         Everything you need for<br />
         <span class="gradient-text">SSL/TLS diagnostics</span>
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 lg:gap-6">
       {features.map((feature, i) => (
         <div
-          class="feature-card group bg-tokyo-bg-dark/60 border border-tokyo-border/40 rounded-2xl p-6 lg:p-8 backdrop-blur-sm slide-fade-up"
+          class="feature-card group bg-tokyo-bg-dark/60 border border-tokyo-border/40 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 backdrop-blur-sm slide-fade-up"
           style={`--slide-delay: ${0.1 + i * 0.08}s`}
         >
           <!-- Icon + Tag header -->
-          <div class="flex items-start justify-between mb-5">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 md:gap-0 mb-3 md:mb-5">
             <div
-              class="flex items-center justify-center w-12 h-12 rounded-xl border border-current/20 transition-transform group-hover:scale-110"
+              class="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl border border-current/20 transition-transform group-hover:scale-110"
               style={`color: ${feature.color}; background: ${feature.color}12`}
               set:html={feature.icon}
             />
             <span
-              class="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full border"
+              class="font-mono text-[9px] md:text-[10px] uppercase tracking-widest px-2 py-0.5 md:px-2.5 md:py-1 rounded-full border w-fit"
               style={`color: ${feature.color}; border-color: ${feature.color}30; background: ${feature.color}08`}
             >
               {feature.tag}
@@ -82,10 +82,10 @@ const features = [
           </div>
 
           <!-- Content -->
-          <h3 class="font-mono font-bold text-lg mb-2 transition-colors" style={`color: ${feature.color}`}>
+          <h3 class="font-mono font-bold text-sm md:text-lg mb-1 md:mb-2 transition-colors" style={`color: ${feature.color}`}>
             {feature.title}
           </h3>
-          <p class="text-tokyo-text-dim text-sm leading-relaxed">
+          <p class="text-tokyo-text-dim text-xs md:text-sm leading-relaxed hidden md:block">
             {feature.description}
           </p>
         </div>

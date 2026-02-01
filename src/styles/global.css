@@ -30,6 +30,13 @@ html {
 .slide {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  min-height: 100dvh;
+}
+
+@supports not (min-height: 100dvh) {
+  .slide {
+    min-height: 100vh;
+  }
 }
 
 /* Disable scroll-snap on docs pages */
