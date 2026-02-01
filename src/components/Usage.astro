@@ -1,0 +1,156 @@
+---
+const tabs = [
+  {
+    id: 'interactive',
+    label: 'Interactive',
+    commands: [
+      { text: '# Launch interactive mode - select checks from a menu', comment: true },
+      { text: 'ssl-toolkit' },
+      { text: '' },
+      { text: '# Or specify a domain to get prompted for checks', comment: true },
+      { text: 'ssl-toolkit -d example.com' },
+      { text: '' },
+      { text: '# Menu options include:', comment: true },
+      { text: '#   DNS Resolution, TLS Connection, Certificate Details,', comment: true },
+      { text: '#   WHOIS Lookup, Security Grade, and more', comment: true },
+    ],
+  },
+  {
+    id: 'domain',
+    label: 'Domain Check',
+    commands: [
+      { text: '# Full domain analysis with all checks', comment: true },
+      { text: 'ssl-toolkit -d github.com --non-interactive' },
+      { text: '' },
+      { text: '# Quick grade only', comment: true },
+      { text: 'ssl-toolkit -d example.com --quiet' },
+      { text: '' },
+      { text: '# Override IP address and port', comment: true },
+      { text: 'ssl-toolkit -d example.com -i 192.168.1.100 -p 8443' },
+      { text: '' },
+      { text: '# Skip WHOIS lookup', comment: true },
+      { text: 'ssl-toolkit -d example.com --non-interactive --skip-whois' },
+    ],
+  },
+  {
+    id: 'cert',
+    label: 'Cert Operations',
+    commands: [
+      { text: '# View certificate details', comment: true },
+      { text: 'ssl-toolkit cert info cert.pem' },
+      { text: '' },
+      { text: '# Verify key-cert pair', comment: true },
+      { text: 'ssl-toolkit cert verify --cert cert.pem --key key.pem' },
+      { text: '' },
+      { text: '# Validate certificate chain', comment: true },
+      { text: 'ssl-toolkit cert verify --chain chain.pem --hostname example.com' },
+      { text: '' },
+      { text: '# Convert PEM to DER', comment: true },
+      { text: 'ssl-toolkit cert convert cert.pem --to der -o cert.der' },
+      { text: '' },
+      { text: '# Create PKCS#12 bundle', comment: true },
+      { text: 'ssl-toolkit cert convert --to p12 --cert cert.pem --key key.pem' },
+    ],
+  },
+  {
+    id: 'ci-cd',
+    label: 'CI/CD & Export',
+    commands: [
+      { text: '# JSON output for pipelines', comment: true },
+      { text: 'ssl-toolkit -d example.com --non-interactive --json' },
+      { text: '' },
+      { text: '# Generate HTML report', comment: true },
+      { text: 'ssl-toolkit -d example.com --non-interactive -o report.html' },
+      { text: '' },
+      { text: '# Use exit codes in scripts', comment: true },
+      { text: 'ssl-toolkit -d example.com --quiet && echo "SSL OK" || echo "SSL FAIL"' },
+      { text: '' },
+      { text: '# Verbose output for debugging', comment: true },
+      { text: 'ssl-toolkit -d example.com --non-interactive --verbose' },
+    ],
+  },
+];
+---
+
+<section id="usage" class="py-16 md:py-24 relative">
+  <div class="section-divider max-w-4xl mx-auto mb-16"></div>
+
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-14">
+      <p class="font-mono text-xs text-tokyo-blue uppercase tracking-[0.2em] mb-3">Usage</p>
+      <h2 class="text-2xl md:text-4xl font-bold text-tokyo-text">
+        Powerful <span class="gradient-text">command-line interface</span>
+      </h2>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap gap-1 mb-6 border-b border-tokyo-border/50">
+      {tabs.map((tab, i) => (
+        <button
+          class={`usage-tab px-4 py-2.5 font-mono text-sm transition-all rounded-t-lg cursor-pointer ${i === 0 ? 'tab-active' : 'text-tokyo-text-dim hover:text-tokyo-text hover:bg-tokyo-bg-light/30'}`}
+          data-tab={tab.id}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Tab panels -->
+    {tabs.map((tab, i) => (
+      <div
+        class={`usage-panel terminal-window rounded-xl overflow-hidden ${i === 0 ? '' : 'hidden'}`}
+        data-panel={tab.id}
+      >
+        <div class="flex items-center justify-between px-4 py-3 bg-tokyo-bg-dark/80 border-b border-tokyo-border/50">
+          <div class="flex items-center gap-3">
+            <div class="flex gap-2">
+              <div class="w-3 h-3 rounded-full bg-tokyo-red/80"></div>
+              <div class="w-3 h-3 rounded-full bg-tokyo-orange/80"></div>
+              <div class="w-3 h-3 rounded-full bg-tokyo-green/80"></div>
+            </div>
+            <span class="text-xs font-mono text-tokyo-text-dim">{tab.label}</span>
+          </div>
+        </div>
+        <div class="bg-tokyo-bg-dark p-5 md:p-6 font-mono text-xs md:text-[13px] overflow-x-auto leading-[1.8]">
+          {tab.commands.map((cmd) => (
+            <div>
+              {cmd.text === '' ? (
+                <br />
+              ) : cmd.comment ? (
+                <span class="text-tokyo-text-dim">{cmd.text}</span>
+              ) : (
+                <>
+                  <span class="text-tokyo-green select-none">$ </span>
+                  <span class="text-tokyo-text">{cmd.text}</span>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.usage-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const targetId = (tab as HTMLElement).dataset.tab;
+
+      document.querySelectorAll('.usage-tab').forEach((t) => {
+        t.classList.remove('tab-active');
+        t.classList.add('text-tokyo-text-dim');
+      });
+      tab.classList.add('tab-active');
+      tab.classList.remove('text-tokyo-text-dim');
+
+      document.querySelectorAll('.usage-panel').forEach((panel) => {
+        if ((panel as HTMLElement).dataset.panel === targetId) {
+          panel.classList.remove('hidden');
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

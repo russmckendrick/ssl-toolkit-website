@@ -1,0 +1,214 @@
+{
+  "colorMap": {
+    "cyan": "color: #7dcfff",
+    "green": "color: #9ece6a",
+    "purple": "color: #bb9af7",
+    "red": "color: #f7768e",
+    "orange": "color: #e0af68",
+    "blue": "color: #7aa2f7",
+    "dim": "color: #565f89",
+    "text": "color: #c0caf5",
+    "prompt": "color: #7dcfff",
+    "check": "color: #9ece6a",
+    "grade": "color: #9ece6a; font-weight: bold",
+    "gradebox": "color: #9ece6a"
+  },
+  "scenarios": [
+    {
+      "lines": [
+        { "text": "", "pause": 300 },
+        { "parts": [
+          { "text": "❯ ", "cls": "prompt" },
+          { "text": "What would you like to do?", "cls": "text" }
+        ], "pause": 100 },
+        { "parts": [
+          { "text": "❯ ", "cls": "prompt" },
+          { "text": "Check a domain", "cls": "cyan" }
+        ], "pause": 80 },
+        { "text": "  Inspect certificate file(s)", "cls": "dim", "pause": 40 },
+        { "text": "  Verify certificate & key", "cls": "dim", "pause": 40 },
+        { "text": "  Convert certificate format", "cls": "dim", "pause": 40 },
+        { "text": "  Quit", "cls": "dim", "pause": 40 },
+        { "text": "[↑↓ to move, enter to select, type to filter]", "cls": "dim", "pause": 600 },
+        { "text": "", "pause": 200 },
+        { "clear": true, "pause": 100 },
+        { "parts": [
+          { "text": "✓ ", "cls": "check" },
+          { "text": "What would you like to do? ", "cls": "text" },
+          { "text": "Check a domain", "cls": "cyan" }
+        ], "pause": 200 },
+        { "parts": [
+          { "text": "❯ ", "cls": "prompt" },
+          { "text": "Domain to check: ", "cls": "text" },
+          { "text": "www.russ.cloud", "cls": "cyan", "typed": true }
+        ], "pause": 100 },
+        { "parts": [
+          { "text": "❯ ", "cls": "prompt" },
+          { "text": "Port: ", "cls": "text" },
+          { "text": "443", "cls": "cyan" }
+        ], "pause": 800 },
+        { "text": "", "pause": 400 },
+        { "parts": [
+          { "text": "✓ ", "cls": "check" },
+          { "text": "DNS Resolution Complete", "cls": "text" }
+        ], "pause": 200 },
+        { "text": "  ┌────────────┬────────┬──────────────────────────────┬──────┐", "cls": "dim", "pause": 50 },
+        { "text": "  │ Provider   │ Status │ IP Addresses                 │ Time │", "cls": "dim", "pause": 50 },
+        { "text": "  ├────────────┼────────┼──────────────────────────────┼──────┤", "cls": "dim", "pause": 50 },
+        { "parts": [
+          { "text": "  │ System     │ ", "cls": "dim" },
+          { "text": "✓ OK", "cls": "green" },
+          { "text": "   │ 104.21.67.197, 172.67.180.37 │ 22ms │", "cls": "dim" }
+        ], "pause": 100 },
+        { "parts": [
+          { "text": "  │ Google     │ ", "cls": "dim" },
+          { "text": "✓ OK", "cls": "green" },
+          { "text": "   │ 172.67.180.37, 104.21.67.197 │ 21ms │", "cls": "dim" }
+        ], "pause": 100 },
+        { "parts": [
+          { "text": "  │ Cloudflare │ ", "cls": "dim" },
+          { "text": "✓ OK", "cls": "green" },
+          { "text": "   │ 104.21.67.197, 172.67.180.37 │ 18ms │", "cls": "dim" }
+        ], "pause": 100 },
+        { "parts": [
+          { "text": "  │ OpenDNS    │ ", "cls": "dim" },
+          { "text": "✓ OK", "cls": "green" },
+          { "text": "   │ 172.67.180.37, 104.21.67.197 │ 24ms │", "cls": "dim" }
+        ], "pause": 100 },
+        { "text": "  └────────────┴────────┴──────────────────────────────┴──────┘", "cls": "dim", "pause": 200 },
+        { "text": "", "pause": 200 },
+        { "parts": [
+          { "text": "❯ ", "cls": "prompt" },
+          { "text": "Select IPs to check:", "cls": "text" }
+        ], "pause": 100 },
+        { "parts": [
+          { "text": "❯ ", "cls": "prompt" },
+          { "text": "✓ ", "cls": "check" },
+          { "text": "104.21.67.197", "cls": "cyan" }
+        ], "pause": 80 },
+        { "text": "  ○ 172.67.180.37", "cls": "dim", "pause": 40 },
+        { "text": "  ○ Enter IP address manually", "cls": "dim", "pause": 600 },
+        { "text": "", "pause": 200 },
+        { "parts": [
+          { "text": "✓ ", "cls": "check" },
+          { "text": "Select IPs to check: ", "cls": "text" },
+          { "text": "104.21.67.197", "cls": "cyan" }
+        ], "pause": 400 },
+        { "text": "", "pause": 200 },
+        { "parts": [
+          { "text": "  ✓ ", "cls": "check" },
+          { "text": "TLS handshake completed successfully", "cls": "text" }
+        ], "pause": 150 },
+        { "parts": [
+          { "text": "  ✓ ", "cls": "check" },
+          { "text": "TLS 1.3 is a secure protocol", "cls": "text" }
+        ], "pause": 100 },
+        { "parts": [
+          { "text": "  ✓ ", "cls": "check" },
+          { "text": "Cipher suite is secure", "cls": "text" }
+        ], "pause": 100 },
+        { "text": "", "pause": 200 },
+        { "parts": [
+          { "text": "✓ ", "cls": "check" },
+          { "text": "Certificate Validity ", "cls": "text" },
+          { "text": "Certificate valid for 86 days", "cls": "dim" }
+        ], "pause": 200 },
+        { "text": "", "pause": 100 },
+        { "text": "  Certificate Information", "cls": "text", "pause": 100 },
+        { "parts": [
+          { "text": "  Subject ............... ", "cls": "dim" },
+          { "text": "CN=russ.cloud", "cls": "text" }
+        ], "pause": 60 },
+        { "parts": [
+          { "text": "  Issuer ................ ", "cls": "dim" },
+          { "text": "C=US, O=Google Trust Services, CN=WE1", "cls": "text" }
+        ], "pause": 60 },
+        { "parts": [
+          { "text": "  Valid From ............ ", "cls": "dim" },
+          { "text": "2026-01-28 15:25:04 UTC", "cls": "text" }
+        ], "pause": 60 },
+        { "parts": [
+          { "text": "  Valid Until ........... ", "cls": "dim" },
+          { "text": "2026-04-28 16:25:02 UTC", "cls": "text" }
+        ], "pause": 60 },
+        { "parts": [
+          { "text": "  Public Key ............ ", "cls": "dim" },
+          { "text": "ECDSA P-256 (256 bits)", "cls": "text" }
+        ], "pause": 60 },
+        { "text": "", "pause": 100 },
+        { "text": "  Subject Alternative Names", "cls": "text", "pause": 100 },
+        { "text": "  • russ.cloud", "cls": "text", "pause": 40 },
+        { "text": "  • www.russ.cloud", "cls": "text", "pause": 100 },
+        { "text": "", "pause": 100 },
+        { "text": "  Certificate Chain", "cls": "text", "pause": 100 },
+        { "parts": [
+          { "text": "  📄 Server: ", "cls": "dim" },
+          { "text": "russ.cloud", "cls": "text" },
+          { "text": " (86 days)", "cls": "green" }
+        ], "pause": 80 },
+        { "parts": [
+          { "text": "  ├── 📋 Intermediate: ", "cls": "dim" },
+          { "text": "WE1", "cls": "text" },
+          { "text": " (1114 days)", "cls": "cyan" }
+        ], "pause": 80 },
+        { "parts": [
+          { "text": "  └── 📋 Intermediate: ", "cls": "dim" },
+          { "text": "GTS Root R4", "cls": "text" },
+          { "text": " (725 days)", "cls": "cyan" }
+        ], "pause": 200 },
+        { "text": "", "pause": 100 },
+        { "parts": [
+          { "text": "  ✓ ", "cls": "check" },
+          { "text": "Certificate is within validity period", "cls": "text" }
+        ], "pause": 80 },
+        { "parts": [
+          { "text": "  ✓ ", "cls": "check" },
+          { "text": "Certificate is valid for hostname 'www.russ.cloud'", "cls": "text" }
+        ], "pause": 200 },
+        { "text": "", "pause": 200 },
+        { "parts": [
+          { "text": "✓ ", "cls": "check" },
+          { "text": "WHOIS Lookup ", "cls": "text" },
+          { "text": "Registered via Cloudflare", "cls": "dim" }
+        ], "pause": 200 },
+        { "text": "", "pause": 100 },
+        { "text": "  Domain Registration", "cls": "text", "pause": 100 },
+        { "parts": [
+          { "text": "  Registrar .... ", "cls": "dim" },
+          { "text": "Cloudflare", "cls": "text" }
+        ], "pause": 60 },
+        { "parts": [
+          { "text": "  Created ...... ", "cls": "dim" },
+          { "text": "2024-07-21T14:56:30.958Z", "cls": "text" }
+        ], "pause": 60 },
+        { "parts": [
+          { "text": "  Expires ...... ", "cls": "dim" },
+          { "text": "2026-07-21T14:56:30.958Z", "cls": "text" }
+        ], "pause": 60 },
+        { "parts": [
+          { "text": "  Nameservers .. ", "cls": "dim" },
+          { "text": "abby.ns.cloudflare.com, rob.ns.cloudflare.com", "cls": "text" }
+        ], "pause": 100 },
+        { "text": "", "pause": 100 },
+        { "parts": [
+          { "text": "  ✓ ", "cls": "check" },
+          { "text": "WHOIS query completed", "cls": "text" }
+        ], "pause": 80 },
+        { "parts": [
+          { "text": "  ✓ ", "cls": "check" },
+          { "text": "Domain registered with Cloudflare", "cls": "text" }
+        ], "pause": 200 },
+        { "text": "", "pause": 300 },
+        { "text": "╔═══════════════════════════╗", "cls": "gradebox", "pause": 100 },
+        { "parts": [
+          { "text": "║   ", "cls": "gradebox" },
+          { "text": "Grade: A+", "cls": "grade" },
+          { "text": "  ", "cls": "gradebox" },
+          { "text": "Score: 100", "cls": "grade" },
+          { "text": "   ║", "cls": "gradebox" }
+        ], "pause": 100 },
+        { "text": "╚═══════════════════════════╝", "cls": "gradebox", "pause": 100 }
+      ]
+    }
+  ]
+}

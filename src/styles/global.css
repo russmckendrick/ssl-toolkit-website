@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tokyo-bg: #24283b;
+  --color-tokyo-bg-dark: #1a1b26;
+  --color-tokyo-bg-light: #292e42;
+  --color-tokyo-text: #c0caf5;
+  --color-tokyo-text-dim: #565f89;
+  --color-tokyo-blue: #7aa2f7;
+  --color-tokyo-green: #9ece6a;
+  --color-tokyo-red: #f7768e;
+  --color-tokyo-purple: #bb9af7;
+  --color-tokyo-orange: #e0af68;
+  --color-tokyo-cyan: #7dcfff;
+  --color-tokyo-magenta: #bb9af7;
+  --color-tokyo-border: #3b4261;
+  --color-tokyo-yellow: #e0af68;
+
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Base ────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(122, 162, 247, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(187, 154, 247, 0.04), transparent),
+    var(--color-tokyo-bg);
+}
+
+::selection {
+  background: rgba(122, 162, 247, 0.3);
+  color: var(--color-tokyo-text);
+}
+
+/* ── Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-tokyo-bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--color-tokyo-border); border-radius: 3px; }
+
+/* ── Noise overlay ───────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Animations ──────────────────────────────────────── */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.cursor-blink { animation: blink 1s step-end infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+.animate-delay-5 { animation-delay: 0.5s; }
+
+/* ── Banner glow ─────────────────────────────────────── */
+.banner-glow {
+  text-shadow:
+    0 0 10px rgba(187, 154, 247, 0.5),
+    0 0 30px rgba(187, 154, 247, 0.3),
+    0 0 60px rgba(187, 154, 247, 0.15),
+    0 0 100px rgba(187, 154, 247, 0.05);
+}
+
+/* ── Scanlines ───────────────────────────────────────── */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  pointer-events: none;
+}
+
+/* ── CRT scan beam ───────────────────────────────────── */
+.crt-scan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(122, 162, 247, 0.03) 50%,
+    transparent 100%
+  );
+  height: 30%;
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Terminal window ─────────────────────────────────── */
+.terminal-window {
+  background:
+    linear-gradient(135deg, rgba(26, 27, 38, 0.95), rgba(36, 40, 59, 0.95));
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 0 1px rgba(59, 66, 97, 0.5),
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(122, 162, 247, 0.05);
+}
+
+#terminal-output {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Gradient text ───────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-tokyo-blue), var(--color-tokyo-purple), var(--color-tokyo-cyan));
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Feature card hover ──────────────────────────────── */
+.feature-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(122, 162, 247, 0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(122, 162, 247, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(122, 162, 247, 0.05);
+}
+
+/* ── Tab active ──────────────────────────────────────── */
+.tab-active {
+  color: var(--color-tokyo-blue) !important;
+  border-bottom: 2px solid var(--color-tokyo-blue);
+  background: rgba(122, 162, 247, 0.05);
+}
+
+/* ── Section divider ─────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-tokyo-border), transparent);
+}
+
+/* ── Grid pattern background ─────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(59, 66, 97, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 66, 97, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
