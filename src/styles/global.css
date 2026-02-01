@@ -23,6 +23,22 @@
 /* ── Base ────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+/* ── Scroll Snap Slides ─────────────────────────────── */
+.slide {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Disable scroll-snap on docs pages */
+.docs-container {
+  scroll-snap-type: none;
+}
+
+body:has(.docs-container) {
+  scroll-snap-type: none;
 }
 
 body {
@@ -100,6 +116,39 @@ body::before {
 .animate-delay-3 { animation-delay: 0.3s; }
 .animate-delay-4 { animation-delay: 0.4s; }
 .animate-delay-5 { animation-delay: 0.5s; }
+
+/* ── Slide animations ───────────────────────────────── */
+@keyframes slideFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-fade-up {
+  opacity: 0;
+  animation: slideFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--slide-delay, 0s);
+}
+
+.slide-delay-1 { --slide-delay: 0.15s; }
+.slide-delay-2 { --slide-delay: 0.3s; }
+.slide-delay-3 { --slide-delay: 0.45s; }
+
+/* ── Scroll nav dots ────────────────────────────────── */
+.scroll-nav-dot {
+  transition: all 0.3s ease;
+}
+
+.scroll-nav-active {
+  background: var(--color-tokyo-blue) !important;
+  border-color: var(--color-tokyo-blue) !important;
+  transform: scale(1.3);
+}
 
 /* ── Banner glow ─────────────────────────────────────── */
 .banner-glow {
@@ -218,4 +267,166 @@ body::before {
     linear-gradient(rgba(59, 66, 97, 0.15) 1px, transparent 1px),
     linear-gradient(90deg, rgba(59, 66, 97, 0.15) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+/* ── Documentation prose styles ─────────────────────── */
+.docs-content h1 {
+  font-family: var(--font-mono);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-tokyo-text);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.docs-content h2 {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-tokyo-text);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-tokyo-border);
+}
+
+.docs-content h3 {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-tokyo-cyan);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.docs-content h4 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-tokyo-blue);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.docs-content p {
+  color: var(--color-tokyo-text-dim);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.docs-content strong {
+  color: var(--color-tokyo-text);
+  font-weight: 600;
+}
+
+.docs-content a {
+  color: var(--color-tokyo-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.docs-content a:hover {
+  color: var(--color-tokyo-cyan);
+}
+
+.docs-content ul, .docs-content ol {
+  color: var(--color-tokyo-text-dim);
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.docs-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+}
+
+.docs-content ul li::marker {
+  color: var(--color-tokyo-purple);
+}
+
+.docs-content ol li::marker {
+  color: var(--color-tokyo-orange);
+  font-family: var(--font-mono);
+}
+
+.docs-content code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-tokyo-bg-dark);
+  color: var(--color-tokyo-cyan);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--color-tokyo-border);
+}
+
+.docs-content pre {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background: var(--color-tokyo-bg-dark);
+  border: 1px solid var(--color-tokyo-border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.docs-content pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--color-tokyo-text);
+}
+
+.docs-content table {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  background: var(--color-tokyo-bg-dark);
+  border: 1px solid var(--color-tokyo-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.docs-content thead {
+  background: rgba(59, 66, 97, 0.3);
+}
+
+.docs-content th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  color: var(--color-tokyo-text-dim);
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-tokyo-border);
+}
+
+.docs-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(59, 66, 97, 0.3);
+  color: var(--color-tokyo-text-dim);
+}
+
+.docs-content tr:last-child td {
+  border-bottom: none;
+}
+
+.docs-content td:first-child {
+  color: var(--color-tokyo-green);
+}
+
+.docs-content blockquote {
+  border-left: 3px solid var(--color-tokyo-purple);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--color-tokyo-text-dim);
+  font-style: italic;
+}
+
+.docs-content hr {
+  border: none;
+  border-top: 1px solid var(--color-tokyo-border);
+  margin: 2rem 0;
 }

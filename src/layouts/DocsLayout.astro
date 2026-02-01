@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+import Sidebar from '../components/docs/Sidebar.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+}
+
+const { title, description, slug } = Astro.props;
+
+// Get all docs for prev/next navigation
+const docs = await getCollection('docs');
+const sortedDocs = docs.sort((a, b) => a.data.order - b.data.order);
+const currentIndex = sortedDocs.findIndex((doc) => doc.slug === slug);
+const prevDoc = currentIndex > 0 ? sortedDocs[currentIndex - 1] : null;
+const nextDoc = currentIndex < sortedDocs.length - 1 ? sortedDocs[currentIndex + 1] : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#24283b" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <title>{title} — ssl-toolkit Docs</title>
+
+    <meta property="og:title" content={`${title} — ssl-toolkit Docs`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={`https://ssl-toolkit.dev/docs/${slug}/`} />
+  </head>
+  <body class="bg-tokyo-bg text-tokyo-text font-sans min-h-screen antialiased">
+    <div class="docs-container flex min-h-screen">
+      <!-- Sidebar -->
+      <div class="docs-sidebar-wrapper w-full lg:w-64 lg:flex-shrink-0 lg:border-r lg:border-tokyo-border/30 bg-tokyo-bg-dark/50 lg:fixed lg:h-screen lg:overflow-y-auto">
+        <Sidebar currentSlug={slug} />
+      </div>
+
+      <!-- Main content -->
+      <main class="flex-1 lg:ml-64">
+        <div class="max-w-4xl mx-auto px-6 py-12 lg:py-16">
+          <!-- Breadcrumb -->
+          <nav class="flex items-center gap-2 text-xs font-mono text-tokyo-text-dim mb-8">
+            <a href="/" class="hover:text-tokyo-text transition-colors">Home</a>
+            <span>/</span>
+            <a href="/docs/" class="hover:text-tokyo-text transition-colors">Docs</a>
+            <span>/</span>
+            <span class="text-tokyo-blue">{title}</span>
+          </nav>
+
+          <!-- Content -->
+          <article class="docs-content prose prose-invert max-w-none">
+            <slot />
+          </article>
+
+          <!-- Prev/Next navigation -->
+          <nav class="mt-16 pt-8 border-t border-tokyo-border/30">
+            <div class="flex flex-col sm:flex-row justify-between gap-4">
+              {prevDoc ? (
+                <a
+                  href={`/docs/${prevDoc.slug}/`}
+                  class="group flex items-center gap-3 px-5 py-4 rounded-xl bg-tokyo-bg-dark/50 border border-tokyo-border/30 hover:border-tokyo-blue/30 transition-all"
+                >
+                  <svg class="w-5 h-5 text-tokyo-text-dim group-hover:text-tokyo-blue group-hover:-translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                  </svg>
+                  <div>
+                    <p class="text-[10px] font-mono uppercase tracking-widest text-tokyo-text-dim">Previous</p>
+                    <p class="font-mono text-sm text-tokyo-text group-hover:text-tokyo-blue transition-colors">{prevDoc.data.title}</p>
+                  </div>
+                </a>
+              ) : (
+                <div></div>
+              )}
+
+              {nextDoc ? (
+                <a
+                  href={`/docs/${nextDoc.slug}/`}
+                  class="group flex items-center justify-end gap-3 px-5 py-4 rounded-xl bg-tokyo-bg-dark/50 border border-tokyo-border/30 hover:border-tokyo-blue/30 transition-all sm:text-right"
+                >
+                  <div>
+                    <p class="text-[10px] font-mono uppercase tracking-widest text-tokyo-text-dim">Next</p>
+                    <p class="font-mono text-sm text-tokyo-text group-hover:text-tokyo-blue transition-colors">{nextDoc.data.title}</p>
+                  </div>
+                  <svg class="w-5 h-5 text-tokyo-text-dim group-hover:text-tokyo-blue group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          </nav>
+
+          <!-- Footer -->
+          <footer class="mt-12 pt-8 border-t border-tokyo-border/30 text-center">
+            <p class="font-mono text-xs text-tokyo-text-dim">
+              <span class="text-tokyo-purple font-bold">ssl-toolkit</span>
+              <span class="mx-2">|</span>
+              MIT License
+              <span class="mx-2">|</span>
+              <a href="https://github.com/russmckendrick/ssl-toolkit" target="_blank" rel="noopener noreferrer" class="text-tokyo-blue hover:underline">GitHub</a>
+            </p>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

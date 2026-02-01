@@ -52,9 +52,9 @@
           { "text": "✓ ", "cls": "check" },
           { "text": "DNS Resolution Complete", "cls": "text" }
         ], "pause": 200 },
-        { "text": "  ┌────────────┬────────┬──────────────────────────────┬──────┐", "cls": "dim", "pause": 50 },
-        { "text": "  │ Provider   │ Status │ IP Addresses                 │ Time │", "cls": "dim", "pause": 50 },
-        { "text": "  ├────────────┼────────┼──────────────────────────────┼──────┤", "cls": "dim", "pause": 50 },
+        { "text": "  ┌────────────┬────────┬────────────────────────────┬──────┐", "cls": "dim", "pause": 50 },
+        { "text": "  │ Provider   │ Status │ IP Addresses                │ Time │", "cls": "dim", "pause": 50 },
+        { "text": "  ├────────────┼────────┼────────────────────────────┼──────┤", "cls": "dim", "pause": 50 },
         { "parts": [
           { "text": "  │ System     │ ", "cls": "dim" },
           { "text": "✓ OK", "cls": "green" },
@@ -199,7 +199,7 @@
           { "text": "Domain registered with Cloudflare", "cls": "text" }
         ], "pause": 200 },
         { "text": "", "pause": 300 },
-        { "text": "╔═══════════════════════════╗", "cls": "gradebox", "pause": 100 },
+        { "text": "╔═════════════════════════╗", "cls": "gradebox", "pause": 100 },
         { "parts": [
           { "text": "║   ", "cls": "gradebox" },
           { "text": "Grade: A+", "cls": "grade" },
@@ -207,7 +207,7 @@
           { "text": "Score: 100", "cls": "grade" },
           { "text": "   ║", "cls": "gradebox" }
         ], "pause": 100 },
-        { "text": "╚═══════════════════════════╝", "cls": "gradebox", "pause": 100 }
+        { "text": "╚═════════════════════════╝", "cls": "gradebox", "pause": 100 }
       ]
     }
   ]

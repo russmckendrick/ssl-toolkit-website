@@ -1,0 +1,74 @@
+---
+const slides = [
+  { id: 'slide-hero', label: 'Home' },
+  { id: 'slide-features', label: 'Features' },
+  { id: 'slide-cta', label: 'Get Started' },
+];
+---
+
+<nav class="scroll-nav fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-3" aria-label="Page navigation">
+  {slides.map((slide) => (
+    <button
+      class="scroll-nav-dot group relative w-3 h-3 rounded-full border border-tokyo-border bg-tokyo-bg-dark/80 hover:border-tokyo-blue transition-all cursor-pointer"
+      data-target={slide.id}
+      aria-label={`Go to ${slide.label}`}
+    >
+      <span class="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-mono text-xs text-tokyo-text-dim bg-tokyo-bg-dark/90 px-2 py-1 rounded border border-tokyo-border/50">
+        {slide.label}
+      </span>
+    </button>
+  ))}
+</nav>
+
+<script>
+  const navDots = document.querySelectorAll('.scroll-nav-dot');
+  const slides = document.querySelectorAll('.slide');
+
+  // Click to scroll
+  navDots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const targetId = (dot as HTMLElement).dataset.target;
+      const target = document.getElementById(targetId!);
+      target?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Intersection observer for active state
+  const observerOptions = {
+    root: null,
+    rootMargin: '-40% 0px -40% 0px',
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const slideId = entry.target.id;
+        navDots.forEach((dot) => {
+          const isActive = (dot as HTMLElement).dataset.target === slideId;
+          dot.classList.toggle('scroll-nav-active', isActive);
+        });
+      }
+    });
+  }, observerOptions);
+
+  slides.forEach((slide) => observer.observe(slide));
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const currentIndex = Array.from(slides).findIndex((s) =>
+      s.getBoundingClientRect().top >= -window.innerHeight / 2 &&
+      s.getBoundingClientRect().top < window.innerHeight / 2
+    );
+
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+      e.preventDefault();
+      const next = slides[Math.min(currentIndex + 1, slides.length - 1)];
+      next?.scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      const prev = slides[Math.max(currentIndex - 1, 0)];
+      prev?.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>
