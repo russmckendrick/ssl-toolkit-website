@@ -113,12 +113,33 @@ const banner = `┌────────────────────�
     typed?: boolean;
   }
 
+  interface TableCell {
+    text: string;
+    cls?: string;
+  }
+
+  interface TableRow {
+    cells: (string | TableCell)[];
+  }
+
+  interface TableData {
+    headers: string[];
+    rows: TableRow[];
+  }
+
+  interface GradeBox {
+    grade: string;
+    score: string;
+  }
+
   interface Line {
     text?: string;
     cls?: string;
     pause?: number;
     parts?: LinePart[];
     clear?: boolean;
+    table?: TableData;
+    gradebox?: GradeBox;
   }
 
   interface Scenario {
@@ -143,6 +164,13 @@ const banner = `┌────────────────────�
     container.scrollTop = container.scrollHeight;
   }
 
+  function appendElement(html: string) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    output.appendChild(div.firstElementChild!);
+    container.scrollTop = container.scrollHeight;
+  }
+
   async function typeText(text: string, style: string) {
     for (const ch of text) {
       appendText(ch === ' ' ? ' ' : `<span style="${style}">${ch}</span>`);
@@ -154,9 +182,74 @@ const banner = `┌────────────────────�
     return `<span style="${colorMap[part.cls || ''] || ''}">${part.text}</span>`;
   }
 
+  function renderTable(table: TableData): string {
+    const dimColor = colorMap['dim'] || 'color: #565f89';
+    const textColor = colorMap['text'] || 'color: #c0caf5';
+    
+    let html = `<table style="border-collapse: collapse; margin: 4px 0 8px 8px; font-size: inherit; ${dimColor}">`;
+    
+    // Header row
+    html += '<thead><tr>';
+    table.headers.forEach((header) => {
+      html += `<th style="border: 1px solid #3b4261; padding: 2px 8px; text-align: left; font-weight: normal; ${dimColor}">${header}</th>`;
+    });
+    html += '</tr></thead>';
+    
+    // Data rows
+    html += '<tbody>';
+    table.rows.forEach((row) => {
+      html += '<tr>';
+      row.cells.forEach((cell) => {
+        if (typeof cell === 'string') {
+          html += `<td style="border: 1px solid #3b4261; padding: 2px 8px; ${dimColor}">${cell}</td>`;
+        } else {
+          const cellStyle = colorMap[cell.cls || ''] || textColor;
+          html += `<td style="border: 1px solid #3b4261; padding: 2px 8px; ${cellStyle}">${cell.text}</td>`;
+        }
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    
+    return html;
+  }
+
+  function renderGradeBox(gradebox: GradeBox): string {
+    const gradeColor = colorMap['grade'] || 'color: #9ece6a; font-weight: bold';
+    const boxColor = colorMap['gradebox'] || 'color: #9ece6a';
+    
+    return `<table style="border-collapse: collapse; margin: 8px 0; font-size: inherit; ${boxColor}">
+      <tr>
+        <td style="padding: 0;">╔</td>
+        <td style="padding: 0;">══════════════════════════</td>
+        <td style="padding: 0;">╗</td>
+      </tr>
+      <tr>
+        <td style="padding: 0;">║</td>
+        <td style="padding: 0 8px; ${gradeColor}">Grade: ${gradebox.grade} &nbsp; Score: ${gradebox.score}</td>
+        <td style="padding: 0;">║</td>
+      </tr>
+      <tr>
+        <td style="padding: 0;">╚</td>
+        <td style="padding: 0;">══════════════════════════</td>
+        <td style="padding: 0;">╝</td>
+      </tr>
+    </table>`;
+  }
+
   async function renderLine(line: Line): Promise<void> {
     if (line.clear) {
       output.innerHTML = '';
+      return;
+    }
+
+    if (line.table) {
+      appendElement(renderTable(line.table));
+      return;
+    }
+
+    if (line.gradebox) {
+      appendElement(renderGradeBox(line.gradebox));
       return;
     }
 
