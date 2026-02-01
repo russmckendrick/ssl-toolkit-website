@@ -39,6 +39,11 @@ html {
 
 body:has(.docs-container) {
   scroll-snap-type: none;
+  overflow-x: hidden;
+}
+
+html:has(.docs-container) {
+  overflow-x: hidden;
 }
 
 body {
@@ -365,12 +370,19 @@ body::before {
 
 .docs-content code:not(pre code) {
   font-family: var(--font-mono);
-  font-size: 0.875em;
+  font-size: 0.8em;
   background: var(--color-tokyo-bg-dark);
   color: var(--color-tokyo-cyan);
   padding: 0.2em 0.4em;
   border-radius: 4px;
   border: 1px solid var(--color-tokyo-border);
+  word-break: break-word;
+}
+
+@media (min-width: 640px) {
+  .docs-content code:not(pre code) {
+    font-size: 0.875em;
+  }
 }
 
 .docs-content pre {
@@ -381,8 +393,6 @@ body::before {
   border-radius: 0.75rem;
   padding: 0;
   overflow: hidden;
-  margin-left: -1rem;
-  margin-right: -1rem;
   margin-bottom: 1.5rem;
   line-height: 1.6;
   box-shadow:
@@ -395,8 +405,6 @@ body::before {
 @media (min-width: 640px) {
   .docs-content pre {
     font-size: 0.8125rem;
-    margin-left: 0;
-    margin-right: 0;
   }
 }
 
@@ -448,8 +456,9 @@ body::before {
 
 .docs-content table {
   width: 100%;
+  max-width: 100%;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   border-collapse: collapse;
   margin-bottom: 1.5rem;
   background: var(--color-tokyo-bg-dark);
@@ -465,6 +474,7 @@ body::before {
   .docs-content table {
     font-size: 0.8125rem;
     display: table;
+    max-width: none;
   }
 }
 

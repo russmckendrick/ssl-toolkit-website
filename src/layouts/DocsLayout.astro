@@ -37,21 +37,21 @@ const nextDoc = currentIndex < sortedDocs.length - 1 ? sortedDocs[currentIndex +
     <meta property="og:type" content="article" />
     <meta property="og:url" content={`https://ssl-toolkit.dev/docs/${slug}/`} />
   </head>
-  <body class="bg-tokyo-bg text-tokyo-text font-sans min-h-screen antialiased">
+  <body class="bg-tokyo-bg text-tokyo-text font-sans min-h-screen antialiased overflow-x-hidden">
     <!-- Mobile header - fixed at top -->
     <div class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-tokyo-bg-dark/95 backdrop-blur-sm border-b border-tokyo-border/50">
       <Sidebar currentSlug={slug} />
     </div>
 
-    <div class="docs-container flex min-h-screen">
+    <div class="docs-container flex min-h-screen w-full max-w-full overflow-x-hidden">
       <!-- Sidebar - desktop only -->
       <div class="hidden lg:block lg:w-64 lg:flex-shrink-0 lg:border-r lg:border-tokyo-border/30 bg-tokyo-bg-dark/50 lg:fixed lg:h-screen lg:overflow-y-auto">
         <Sidebar currentSlug={slug} />
       </div>
 
       <!-- Main content -->
-      <main class="flex-1 lg:ml-64 pt-16 lg:pt-0">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 lg:py-16">
+      <main class="flex-1 lg:ml-64 pt-16 lg:pt-0 min-w-0 overflow-x-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 lg:py-16 overflow-x-hidden">
           <!-- Breadcrumb -->
           <nav class="flex items-center gap-2 text-xs font-mono text-tokyo-text-dim mb-8">
             <a href="/" class="hover:text-tokyo-text transition-colors">Home</a>
