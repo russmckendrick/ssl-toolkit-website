@@ -363,20 +363,57 @@ body::before {
 .docs-content pre {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  background: var(--color-tokyo-bg-dark);
+  background: linear-gradient(135deg, rgba(26, 27, 38, 0.95), rgba(36, 40, 59, 0.95));
   border: 1px solid var(--color-tokyo-border);
   border-radius: 0.75rem;
-  padding: 1.25rem;
-  overflow-x: auto;
+  padding: 0;
+  overflow: hidden;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  box-shadow:
+    0 0 0 1px rgba(59, 66, 97, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(122, 162, 247, 0.03);
+  position: relative;
+}
+
+/* Terminal title bar for code blocks */
+.docs-content pre::before {
+  content: '';
+  display: block;
+  padding: 10px 16px;
+  background: rgba(26, 27, 38, 0.8);
+  border-bottom: 1px solid rgba(59, 66, 97, 0.5);
+  background-image: radial-gradient(circle at 16px 50%, #f7768e 5px, transparent 5px),
+                    radial-gradient(circle at 32px 50%, #e0af68 5px, transparent 5px),
+                    radial-gradient(circle at 48px 50%, #9ece6a 5px, transparent 5px);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .docs-content pre code {
+  display: block;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 1rem 1.25rem;
   color: var(--color-tokyo-text);
+  overflow-x: auto;
+}
+
+/* Scanlines effect on code blocks */
+.docs-content pre::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  top: 32px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
 }
 
 .docs-content table {
