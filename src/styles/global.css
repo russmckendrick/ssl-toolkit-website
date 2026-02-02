@@ -419,7 +419,7 @@ body::before {
 .docs-content pre::before {
   content: '';
   display: block;
-  padding: 10px 16px;
+  padding: 12px 16px;
   background: rgba(26, 27, 38, 0.8);
   border-bottom: 1px solid rgba(59, 66, 97, 0.5);
   background-image: radial-gradient(circle at 16px 50%, #f7768e 5px, transparent 5px),
@@ -427,6 +427,33 @@ body::before {
                     radial-gradient(circle at 48px 50%, #9ece6a 5px, transparent 5px);
   background-size: 100% 100%;
   background-repeat: no-repeat;
+}
+
+/* Copy button in terminal title bar */
+.docs-content pre .copy-btn {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  height: 25px;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 6px;
+  border-radius: 4px;
+  color: var(--color-tokyo-text-dim);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docs-content pre .copy-btn:hover {
+  color: var(--color-tokyo-text);
+}
+
+.docs-content pre .copy-btn.copied {
+  color: var(--color-tokyo-green);
 }
 
 .docs-content pre code {
@@ -450,7 +477,7 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  top: 32px;
+  top: 36px;
   background: repeating-linear-gradient(
     0deg,
     transparent,
