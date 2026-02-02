@@ -13,8 +13,7 @@ ssl-toolkit is available for macOS, Linux, and Windows. Choose the installation 
 The recommended way to install on macOS is via Homebrew:
 
 ```bash
-brew tap russmckendrick/tap
-brew install ssl-toolkit
+brew install russmckendrick/tap/ssl-toolkit
 ```
 
 To upgrade to the latest version:

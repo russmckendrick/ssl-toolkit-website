@@ -22,8 +22,7 @@ order: 1
 The fastest way to install ssl-toolkit is via Homebrew:
 
 ```bash
-brew tap russmckendrick/tap
-brew install ssl-toolkit
+brew install russmckendrick/tap/ssl-toolkit
 ```
 
 For other installation methods, see the [Installation](/docs/installation) page.
